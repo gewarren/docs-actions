@@ -82,7 +82,7 @@ internal static class Program
     private static async Task<int> Main(string[] args)
     {
 #if DEBUG
-        args = [@"c:\users\gewarren\desktop\Package Index 0911b", "preview"];
+        args = [@"c:\users\gewarren\desktop\Package Index 1008", "preview"];
 #endif
 
         if ((args.Length == 0) || (args.Length > 2))
@@ -264,14 +264,6 @@ internal static class Program
                 "https://github.com/dotnet/extensions",
                 StringComparison.InvariantCultureIgnoreCase
                 );
-
-            // Except don't include XML file for Microsoft.Extensions.Diagnostics.ResourceMonitoring
-            // See https://github.com/dotnet/dotnet-api-docs/pull/10395#discussion_r1758128787.
-            if (string.Equals(
-                packageEntry.Name,
-                "Microsoft.Extensions.Diagnostics.ResourceMonitoring",
-                StringComparison.InvariantCultureIgnoreCase))
-                includeXml = false;
 
             // Special case for newer assemblies - include XML documentation files.
             if (s_packagesWithTruthDocs.Contains(packageEntry.Name))
